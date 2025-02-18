@@ -21,7 +21,7 @@ class Patron:
         :param memberID: the ID for the Patron in the library's system
         """
 
-        if re.search('\d', fname) or re.search('\d', lname):
+        if re.search("\\d", fname) or re.search("\\d", lname):
             raise InvalidNameException("Name should not contain numbers")
         self.fname = fname
         self.lname = lname
@@ -31,7 +31,7 @@ class Patron:
 
     def add_borrowed_book(self, book):
         """Adds a book to the list of borrowed books for the Patron
-        
+
         :param book: the title of the book
         """
         book = book.lower()
@@ -41,14 +41,14 @@ class Patron:
 
     def get_borrowed_books(self):
         """Gets the list of borrowed books for the Patron.
-        
+
         :returns: the list of borrowed books
         """
         return self.borrowed_books
 
     def return_borrowed_book(self, book):
         """Removes the borrowed book from the list of books currently checked out.
-        
+
         :param book: the title of the book to remove
         """
         book = book.lower()
@@ -65,28 +65,28 @@ class Patron:
 
     def get_fname(self):
         """Getter for the first name of the Patron.
-        
+
         :returns: the first name of the Patron
         """
         return self.fname
 
     def get_lname(self):
         """Getter for the last name of the Patron.
-        
+
         :returns: the last name of the Patron
         """
         return self.lname
 
     def get_age(self):
         """Getter for the age of the Patron.
-        
+
         :returns: the age of the Patron
         """
         return self.age
 
     def get_memberID(self):
         """Getter for the memberID of the Patron.
-        
+
         :returns: the memberID of the Patron
         """
         return self.memberID

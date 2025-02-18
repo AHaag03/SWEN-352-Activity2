@@ -19,9 +19,9 @@ class Library:
     ################################ API METHODS ###############################
     ############################################################################
 
-    def is_ebook(self, book):
+    def is_ebook(self, book: str) -> bool:
         """Checks if the book is an e-book.
-        
+
         :param book: the title of the book
         :returns: True if yes, False if not
         """
@@ -32,9 +32,9 @@ class Library:
                 return True
         return False
 
-    def get_ebooks_count(self, book):
+    def get_ebooks_count(self, book: str) -> int:
         """Gets the number of ebooks for a given book.
-        
+
         :param book: the title of the book
         :returns: the number of ebooks
         """
@@ -44,9 +44,9 @@ class Library:
             ebook_count += ebook['ebook_count']
         return ebook_count
 
-    def is_book_by_author(self, author, book):
+    def is_book_by_author(self, author: str, book: str) -> bool:
         """Determines if the book was written by a given author.
-        
+
         :param author: the name of the author
         :param book: the name of the book
         :returns: True if the book was written by the author, False if not
@@ -57,9 +57,9 @@ class Library:
                 return True
         return False
 
-    def get_languages_for_book(self, book):
+    def get_languages_for_book(self, book: str) -> set[str]:
         """Get the available languages for a given book.
-        
+
         :param book: the title of the book
         :returns: the set of languages the book is available in
         """
@@ -76,7 +76,7 @@ class Library:
 
     def register_patron(self, fname, lname, age, memberID):
         """Registers a Patron with the library and adds them to the database.
-        
+
         :param fname: the Patron's first name
         :param lname: the Patron's last name
         :param age: the Patron's age
@@ -88,7 +88,7 @@ class Library:
 
     def is_patron_registered(self, patron):
         """Determines if the Patron is already registered in the database.
-        
+
         :param patron: the Patron object
         :returns: True if they are in the database, False if not
         """
@@ -99,7 +99,7 @@ class Library:
 
     def borrow_book(self, book, patron):
         """Borrows a book for a Patron.
-        
+
         :param book: the title of the book
         :param patron: the Patron object
         """
@@ -108,7 +108,7 @@ class Library:
 
     def return_borrowed_book(self, book, patron):
         """Returns a borrowed book for a Patron.
-        
+
         :param book: the title of the book
         :param patron: the Patron object
         """
@@ -117,7 +117,7 @@ class Library:
 
     def is_book_borrowed(self, book, patron):
         """Determines if the Patron has borrowed a given book.
-        
+
         :param book: the title of the book
         :param patron: the Patron object
         :returns: True if the Patron has borrowed the book, False if not
