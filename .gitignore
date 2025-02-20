@@ -1,1 +1,4 @@
 /virtualenv
+/htmlcov
+/myenv
+__pycache__
