@@ -19,6 +19,14 @@ class TestLibraryDBInterface(unittest.TestCase):
         self.db_interface.db.insert = Mock(side_effect=lambda x: 10 if x==data else 0)
         self.assertEqual(self.db_interface.insert_patron(patron_mock), 10)
 
+    def test_insert_patron_in_db_none(self):
+        patron_mock = Mock()
+        self.db_interface.retrieve_patron = Mock(return_value=patron_mock)
+        data = {'fname': 'name', 'lname': 'name', 'age': 'age', 'memberID': 'memberID',
+                'borrowed_books': []}
+        self.db_interface.db.insert = Mock(side_effect=lambda x: 10 if x==data else 0)
+        self.assertIsNone(self.db_interface.insert_patron(patron_mock))
+
     def test_insert_patron_in_db(self):
         patron_mock = Mock()
         self.db_interface.retrieve_patron = Mock(return_value=None)
@@ -72,4 +80,25 @@ class TestLibraryDBInterface(unittest.TestCase):
 
     def test_retrieve_patron_None(self):
         self.assertIsNone(self.db_interface.retrieve_patron(10))
+
+    def test_retrieve_patron(self):
+        # Arrange
+        patron_mock = Mock()
+        patron_mock.get_fname = Mock(return_value='Mary')
+        patron_mock.get_lname = Mock(return_value='Sue')
+        patron_mock.get_age = Mock(return_value=3)
+    
+        self.db_interface.db.search = Mock(return_value=[{'fname': 'Mary', 'lname': 'Sue', 'age': 3, 'memberID': 4,
+                          'borrowed_books': 5}])
+        
+        # Act
+        patron = self.db_interface.retrieve_patron(10)
+        
+        # Assert
+        self.assertEqual(patron.get_fname(), patron_mock.get_fname())
+        self.assertEqual(patron.get_lname(), patron_mock.get_lname())
+        self.assertEqual(patron.get_age(), patron_mock.get_age())
+
+    
+
 
